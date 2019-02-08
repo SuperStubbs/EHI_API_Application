@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">EHIApplication</string>
+    <string name="app_description">This app calls https://api.github.com/users/google/repos to get a list of repos, and displays those repos by clicking the \'View Repos\' button below.</string>
+    <string name="view_repos">View Repos</string>
+</resources>
