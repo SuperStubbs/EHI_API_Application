@@ -6,12 +6,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import ehi.ehiapplication.ui.view.RepoDetailsFragment;
 import ehi.ehiapplication.viewmodels.HomeViewModel;
 import ehi.ehiapplication.viewmodels.RepoListViewModel;
 import ehi.ehiapplication.ui.view.HomeFragment;
 import ehi.ehiapplication.ui.view.RepoListFragment;
 
-public class MainActivity extends AppCompatActivity implements HomeViewModel.OnViewReposClickListener{
+public class MainActivity extends AppCompatActivity implements HomeViewModel.OnClickListeners {
 
     private RepoListViewModel repoListViewModel;
 
@@ -44,5 +45,9 @@ public class MainActivity extends AppCompatActivity implements HomeViewModel.OnV
     public void onViewReposClick() {
         replaceFragment(RepoListFragment.newInstance());
         repoListViewModel.fetchRepos();
+    }
+
+    public void onViewRepoDetailsClick(){
+        replaceFragment(RepoDetailsFragment.newInstance());
     }
 }

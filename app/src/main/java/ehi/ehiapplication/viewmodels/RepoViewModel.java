@@ -1,4 +1,6 @@
-package ehi.ehiapplication.models;
+package ehi.ehiapplication.viewmodels;
+
+import android.arch.lifecycle.ViewModel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -8,7 +10,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Repo {
+import ehi.ehiapplication.models.License;
+import ehi.ehiapplication.models.Owner;
+
+public class RepoViewModel extends ViewModel {
     @SerializedName("name")
     @Expose
     private String repoName;
@@ -105,5 +110,12 @@ public class Repo {
             e.printStackTrace();
         }
         return strDateTime;
+    }
+
+    public void onRepoClicked() {
+
+
+        String s = repoName;
+
     }
 }

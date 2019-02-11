@@ -1,4 +1,4 @@
-package ehi.ehiapplication.Data;
+package ehi.ehiapplication.data;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 

@@ -5,18 +5,17 @@ import android.arch.lifecycle.ViewModel;
 
 public class HomeViewModel extends ViewModel {
 
-    private OnViewReposClickListener mCallback;
+    private OnClickListeners mCallback;
 
     public void onViewReposClick() {
-
         mCallback.onViewReposClick();
     }
 
-    public interface OnViewReposClickListener {
+    public interface OnClickListeners {
         void onViewReposClick();
     }
 
     public void setViewReposClickListener(Activity activity) {
-        mCallback = (OnViewReposClickListener) activity;
+        mCallback = (OnClickListeners) activity;
     }
 }

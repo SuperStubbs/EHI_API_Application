@@ -3,10 +3,9 @@ package ehi.ehiapplication.ui.view;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
-import ehi.ehiapplication.models.Repo;
+import ehi.ehiapplication.viewmodels.RepoViewModel;
 import ehi.ehiapplication.viewmodels.RepoListViewModel;
 import ehi.ehiapplication.databinding.RepoListItemBinding;
 
@@ -52,8 +51,8 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.RepoHolder> {
             this.binding = itemBinding;
         }
 
-        void bind(Repo repo) {
-            binding.setRepo(repo);
+        void bind(RepoViewModel repoViewModel) {
+            binding.setRepoViewModel(repoViewModel);
             binding.executePendingBindings();
         }
     }

@@ -5,9 +5,8 @@ import android.arch.lifecycle.ViewModel;
 
 import java.util.List;
 
-import ehi.ehiapplication.Data.RepoFactory;
-import ehi.ehiapplication.Data.RepoService;
-import ehi.ehiapplication.models.Repo;
+import ehi.ehiapplication.data.RepoFactory;
+import ehi.ehiapplication.data.RepoService;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -15,10 +14,10 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RepoListViewModel extends ViewModel {
 
-    private MutableLiveData<List<Repo>> repoList;
+    private MutableLiveData<List<RepoViewModel>> repoList;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    public MutableLiveData<List<Repo>> getRepoList() {
+    public MutableLiveData<List<RepoViewModel>> getRepoList() {
         if(repoList == null) {
             repoList = new MutableLiveData<>();
         }
@@ -44,15 +43,11 @@ public class RepoListViewModel extends ViewModel {
         }
     }
 
-    public Repo getRepoAtPosition(int position) {
+    public RepoViewModel getRepoAtPosition(int position) {
         if(repoList.getValue() != null && position <= repoList.getValue().size()){
             return repoList.getValue().get(position);
         } else {
             return null;
         }
-    }
-
-    public void onRepoClicked(Repo selectedRepo) {
-        String s = selectedRepo.getRepoName();
     }
 }

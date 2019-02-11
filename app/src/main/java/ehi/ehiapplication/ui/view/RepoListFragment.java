@@ -19,7 +19,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ehi.ehiapplication.databinding.ViewRepoListBinding;
-import ehi.ehiapplication.models.Repo;
+import ehi.ehiapplication.viewmodels.RepoViewModel;
 import ehi.ehiapplication.R;
 import ehi.ehiapplication.viewmodels.RepoListViewModel;
 
@@ -44,13 +44,13 @@ public class RepoListFragment extends Fragment {
 
         repoListViewModel = ViewModelProviders.of(getActivity()).get(RepoListViewModel.class);
 
-        final Observer<List<Repo>> repoListObserver = newRepoList -> {
+        final Observer<List<RepoViewModel>> repoListObserver = newRepoList -> {
             if(newRepoList != null) {
                 tvLoading.setVisibility(View.GONE);
                 repo_recycler_view.setVisibility(View.VISIBLE);
                 repoAdapter.setData(repoListViewModel);
             }
-    };
+        };
 
         repoListViewModel.getRepoList().observe(this, repoListObserver);
     }
@@ -73,7 +73,6 @@ public class RepoListFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
     }
 
 }
