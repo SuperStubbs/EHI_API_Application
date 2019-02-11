@@ -55,13 +55,20 @@ public class RepoListFragment extends Fragment {
         };
 
         repoListViewModel.getRepoList().observe(this, repoListObserver);
-
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        repoListViewModel.fetchRepos();
+        if(repoListViewModel.getRepoList().getValue() == null) {
+            repoListViewModel.fetchRepos();
+            tvLoading.setVisibility(View.VISIBLE);
+            repo_recycler_view.setVisibility(View.GONE);
+        } else {
+            repoAdapter.setData(repoListViewModel);
+            tvLoading.setVisibility(View.GONE);
+            repo_recycler_view.setVisibility(View.VISIBLE);
+        }
     }
 
     @Nullable

@@ -11,6 +11,18 @@
     tools:context=".ui.view.HomeFragment">
 
     <TextView
+        android:id="@+id/tvWelcomeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/message"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/welcome_text"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,20 +34,17 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:autoText="false"
         android:gravity="center_vertical|center_horizontal"
         android:text="@string/app_description"
         android:textSize="20sp" />
 
     <Button
         android:id="@+id/viewReposBtn"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
         android:layout_marginBottom="35dp"
         android:text="@string/view_repos" />
 

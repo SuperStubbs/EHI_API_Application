@@ -15,4 +15,5 @@
     <string name="spdx_id_label">SPDX ID: </string>
     <string name="url_label">URL: </string>
     <string name="node_id">Node ID: </string>
+    <string name="welcome_text">WELCOME</string>
 </resources>
