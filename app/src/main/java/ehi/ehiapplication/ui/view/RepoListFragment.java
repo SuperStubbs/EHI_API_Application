@@ -31,6 +31,7 @@ public class RepoListFragment extends Fragment {
     RecyclerView repo_recycler_view;
 
     RepoListViewModel repoListViewModel;
+    RepoViewModel repoViewModel;
     ViewRepoListBinding binding;
     RepoAdapter repoAdapter;
 
@@ -43,6 +44,8 @@ public class RepoListFragment extends Fragment {
         super.onCreate(bundle);
 
         repoListViewModel = ViewModelProviders.of(getActivity()).get(RepoListViewModel.class);
+        repoViewModel = ViewModelProviders.of(getActivity()).get(RepoViewModel.class);
+        repoViewModel.setViewDetailsClickListener(getActivity());
 
         final Observer<List<RepoViewModel>> repoListObserver = newRepoList -> {
             if(newRepoList != null) {
@@ -53,6 +56,12 @@ public class RepoListFragment extends Fragment {
         };
 
         repoListViewModel.getRepoList().observe(this, repoListObserver);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        repoListViewModel.fetchRepos();
     }
 
     @Nullable

@@ -11,8 +11,9 @@ import ehi.ehiapplication.viewmodels.HomeViewModel;
 import ehi.ehiapplication.viewmodels.RepoListViewModel;
 import ehi.ehiapplication.ui.view.HomeFragment;
 import ehi.ehiapplication.ui.view.RepoListFragment;
+import ehi.ehiapplication.viewmodels.RepoViewModel;
 
-public class MainActivity extends AppCompatActivity implements HomeViewModel.OnClickListeners {
+public class MainActivity extends AppCompatActivity implements HomeViewModel.OnClickListeners, RepoViewModel.OnDetailsClickListeners {
 
     private RepoListViewModel repoListViewModel;
 
@@ -41,13 +42,24 @@ public class MainActivity extends AppCompatActivity implements HomeViewModel.OnC
         fragmentTransaction.commit();
     }
 
+    public void addFragment(Fragment fragmentToAdd) {
+        Bundle args = new Bundle();
+        fragmentToAdd.setArguments(args);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction()
+                .add(R.id.container, fragmentToAdd)
+                .addToBackStack(null);
+
+        fragmentTransaction.commit();
+    }
+
     @Override
     public void onViewReposClick() {
         replaceFragment(RepoListFragment.newInstance());
-        repoListViewModel.fetchRepos();
     }
 
-    public void onViewRepoDetailsClick(){
+    @Override
+    public void onViewDetailsClick() {
         replaceFragment(RepoDetailsFragment.newInstance());
     }
 }

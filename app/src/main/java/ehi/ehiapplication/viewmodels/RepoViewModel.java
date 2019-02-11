@@ -1,6 +1,9 @@
 package ehi.ehiapplication.viewmodels;
 
+import android.app.Activity;
 import android.arch.lifecycle.ViewModel;
+import android.content.Context;
+import android.view.View;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -41,6 +44,16 @@ public class RepoViewModel extends ViewModel {
     @SerializedName("license")
     @Expose
     private License license;
+
+    private static OnDetailsClickListeners mCallback;
+
+    public interface OnDetailsClickListeners {
+        void onViewDetailsClick();
+    }
+
+    public void setViewDetailsClickListener(Activity activity) {
+        mCallback = (OnDetailsClickListeners) activity;
+    }
 
     public String getRepoName() {
         return repoName;
@@ -113,9 +126,6 @@ public class RepoViewModel extends ViewModel {
     }
 
     public void onRepoClicked() {
-
-
-        String s = repoName;
-
+        mCallback.onViewDetailsClick();
     }
 }
