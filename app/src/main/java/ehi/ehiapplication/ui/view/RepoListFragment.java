@@ -19,6 +19,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ehi.ehiapplication.databinding.ViewRepoListBinding;
+import ehi.ehiapplication.models.Repo;
 import ehi.ehiapplication.viewmodels.RepoViewModel;
 import ehi.ehiapplication.R;
 import ehi.ehiapplication.viewmodels.RepoListViewModel;
@@ -31,7 +32,6 @@ public class RepoListFragment extends Fragment {
     RecyclerView repo_recycler_view;
 
     RepoListViewModel repoListViewModel;
-    RepoViewModel repoViewModel;
     ViewRepoListBinding binding;
     RepoAdapter repoAdapter;
 
@@ -44,10 +44,9 @@ public class RepoListFragment extends Fragment {
         super.onCreate(bundle);
 
         repoListViewModel = ViewModelProviders.of(getActivity()).get(RepoListViewModel.class);
-        repoViewModel = ViewModelProviders.of(getActivity()).get(RepoViewModel.class);
-        repoViewModel.setViewDetailsClickListener(getActivity());
+        repoListViewModel.setViewDetailsClickListener(getActivity());
 
-        final Observer<List<RepoViewModel>> repoListObserver = newRepoList -> {
+        final Observer<List<Repo>> repoListObserver = newRepoList -> {
             if(newRepoList != null) {
                 tvLoading.setVisibility(View.GONE);
                 repo_recycler_view.setVisibility(View.VISIBLE);
@@ -56,6 +55,7 @@ public class RepoListFragment extends Fragment {
         };
 
         repoListViewModel.getRepoList().observe(this, repoListObserver);
+
     }
 
     @Override
@@ -70,7 +70,7 @@ public class RepoListFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.view_repo_list, container, false);
         binding.setLifecycleOwner(this);
-        repoAdapter = new RepoAdapter();
+        repoAdapter = new RepoAdapter(ViewModelProviders.of(getActivity()).get(RepoViewModel.class));
         binding.repoRecyclerView.setAdapter(repoAdapter);
         binding.repoRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 

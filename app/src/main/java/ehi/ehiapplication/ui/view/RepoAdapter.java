@@ -14,10 +14,15 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.RepoHolder> {
 
     private LayoutInflater layoutInflater;
     private RepoListViewModel repoListViewModel;
+    private RepoViewModel repoViewModel;
 
     public void setData(RepoListViewModel repos) {
         repoListViewModel = repos;
         notifyDataSetChanged();
+    }
+
+    public RepoAdapter(RepoViewModel repoViewModel) {
+        this.repoViewModel = repoViewModel;
     }
 
     @NonNull
@@ -33,7 +38,14 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.RepoHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RepoHolder holder, int position) {
-        holder.bind(repoListViewModel.getRepoAtPosition(position));
+        holder.bind(repoListViewModel.getRepoViewModelAtPosition(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                repoViewModel.getRepo().setValue(repoListViewModel.getRepoAtPosition(holder.getAdapterPosition()));
+                repoListViewModel.onRepoClicked(holder.getAdapterPosition());
+            }
+        });
     }
 
     @Override
