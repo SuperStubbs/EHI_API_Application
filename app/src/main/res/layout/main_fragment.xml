@@ -8,7 +8,7 @@
     android:layout_alignParentBottom="false"
     android:layout_gravity="bottom"
     android:orientation="vertical"
-    tools:context=".ui.main.MainFragment">
+    tools:context=".ui.view.HomeFragment">
 
     <TextView
         android:id="@+id/message"
