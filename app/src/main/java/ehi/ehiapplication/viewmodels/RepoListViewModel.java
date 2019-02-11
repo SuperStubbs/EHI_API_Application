@@ -18,6 +18,7 @@ public class RepoListViewModel extends ViewModel {
 
     private MutableLiveData<List<Repo>> repoList;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private MutableLiveData<Boolean> isLoading;
 
     public MutableLiveData<List<Repo>> getRepoList() {
         if(repoList == null) {
@@ -27,6 +28,7 @@ public class RepoListViewModel extends ViewModel {
     }
 
     public void fetchRepos(){
+        isLoading.setValue(Boolean.TRUE);
         RepoService repoService = RepoFactory.create();
 
         Disposable disposable = repoService.fetchRepos(RepoFactory.EXTENSION_URL)
@@ -35,6 +37,17 @@ public class RepoListViewModel extends ViewModel {
                 .subscribe(repoResponse -> repoList.setValue(repoResponse), throwable -> {
                 });
         compositeDisposable.add(disposable);
+    }
+
+    public MutableLiveData<Boolean> getIsLoading() {
+        if(isLoading == null){
+            isLoading = new MutableLiveData<>();
+        }
+        return isLoading;
+    }
+
+    public void setIsLoading(Boolean isLoading) {
+        this.isLoading.setValue(isLoading);
     }
 
     public int getSizeOfRepos() {

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -30,6 +31,8 @@ public class RepoListFragment extends Fragment {
     TextView tvLoading;
     @BindView(R.id.repo_recycler_view)
     RecyclerView repo_recycler_view;
+    @BindView(R.id.swipe_container)
+    SwipeRefreshLayout swipe_container;
 
     RepoListViewModel repoListViewModel;
     ViewRepoListBinding binding;
@@ -48,13 +51,21 @@ public class RepoListFragment extends Fragment {
 
         final Observer<List<Repo>> repoListObserver = newRepoList -> {
             if(newRepoList != null) {
+                repoListViewModel.setIsLoading(false);
                 tvLoading.setVisibility(View.GONE);
                 repo_recycler_view.setVisibility(View.VISIBLE);
                 repoAdapter.setData(repoListViewModel);
             }
         };
 
+        final Observer<Boolean> isLoadingObserver = isLoading -> {
+            if(isLoading != null) {
+                swipe_container.setRefreshing(isLoading);
+            }
+        };
+
         repoListViewModel.getRepoList().observe(this, repoListObserver);
+        repoListViewModel.getIsLoading().observe(this, isLoadingObserver);
     }
 
     @Override
@@ -83,6 +94,13 @@ public class RepoListFragment extends Fragment {
 
         ButterKnife.bind(this, binding.getRoot());
 
+        swipe_container.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                repoListViewModel.fetchRepos();
+            }
+        });
+
         return binding.getRoot();
     }
 
@@ -90,5 +108,4 @@ public class RepoListFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
-
 }
