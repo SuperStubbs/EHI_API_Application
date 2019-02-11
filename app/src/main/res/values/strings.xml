@@ -6,4 +6,13 @@
     <string name="last_updated_label">Last Updated: </string>
     <string name="owner_name_label">Owner Name: </string>
     <string name="loading_content">Loading Content. Please wait.</string>
+    <string name="description_label">Description: </string>
+    <string name="created_label">Created: </string>
+    <string name="link_label">Repo Link: </string>
+    <string name="license_label">License Info: </string>
+    <string name="key_label">Key: </string>
+    <string name="license_name_label">Name: </string>
+    <string name="spdx_id_label">SPDX ID: </string>
+    <string name="url_label">URL: </string>
+    <string name="node_id">Node ID: </string>
 </resources>
