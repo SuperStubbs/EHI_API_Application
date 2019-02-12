@@ -3,6 +3,7 @@ package ehi.ehiapplication.viewmodels;
 import android.app.Activity;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
+import android.util.Log;
 
 import java.util.List;
 
@@ -19,13 +20,7 @@ public class RepoListViewModel extends ViewModel {
     private MutableLiveData<List<Repo>> repoList;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private MutableLiveData<Boolean> isLoading;
-
-    public MutableLiveData<List<Repo>> getRepoList() {
-        if(repoList == null) {
-            repoList = new MutableLiveData<>();
-        }
-        return repoList;
-    }
+    private MutableLiveData<Boolean> hasError;
 
     public void fetchRepos(){
         isLoading.setValue(Boolean.TRUE);
@@ -34,9 +29,15 @@ public class RepoListViewModel extends ViewModel {
         Disposable disposable = repoService.fetchRepos(RepoFactory.EXTENSION_URL)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(repoResponse -> repoList.setValue(repoResponse), throwable -> {
-                });
+                .subscribe(repoResponse -> repoList.setValue(repoResponse), throwable -> hasError.setValue(true));
         compositeDisposable.add(disposable);
+    }
+
+    public MutableLiveData<List<Repo>> getRepoList() {
+        if(repoList == null) {
+            repoList = new MutableLiveData<>();
+        }
+        return repoList;
     }
 
     public MutableLiveData<Boolean> getIsLoading() {
@@ -46,8 +47,19 @@ public class RepoListViewModel extends ViewModel {
         return isLoading;
     }
 
+    public MutableLiveData<Boolean> getHasError() {
+        if(hasError == null) {
+            hasError = new MutableLiveData<>();
+        }
+
+        return hasError;
+    }
     public void setIsLoading(Boolean isLoading) {
         this.isLoading.setValue(isLoading);
+    }
+
+    public void setHasError(Boolean hasError) {
+        this.hasError.setValue(hasError);
     }
 
     public int getSizeOfRepos() {

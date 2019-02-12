@@ -1,194 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
             name="repoViewModel"
             type="ehi.ehiapplication.viewmodels.RepoViewModel"/>
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TableLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <TableRow style="@style/RepoDetailLayoutPadding">
-            <TextView
-                style="@style/RepoDetailItemLabel"
-                android:id="@+id/tvRepoNameLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/repo_name_label" />
-
-            <TextView
-                style="@style/RepoDetailItem"
-                android:id="@+id/tvRepoName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{repoViewModel.repoName, default=placeholder}"/>
-        </TableRow>
-
-        <TableRow style="@style/RepoDetailLayoutPadding">
-            <TextView
-                style="@style/RepoDetailItemLabel"
-                android:id="@+id/tvDescriptionLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/description_label"/>
-
-
-            <TextView
-                style="@style/RepoDetailItem"
-                android:id="@+id/tvDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{repoViewModel.description, default=placeholder}"/>
-        </TableRow>
-
-        <TableRow style="@style/RepoDetailLayoutPadding">
-            <TextView
-                style="@style/RepoDetailItemLabel"
-                android:id="@+id/tvCreatedDateLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/created_label" />
-
-            <TextView
-                style="@style/RepoDetailItem"
-                android:id="@+id/tvCreatedDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{repoViewModel.createdDate, default=placeholder}"/>
-        </TableRow>
-
-        <TableRow style="@style/RepoDetailLayoutPadding">
-            <TextView
-                style="@style/RepoDetailItemLabel"
-                android:id="@+id/tvLastUpdatedLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/last_updated_label" />
-
-
-            <TextView
-                style="@style/RepoDetailItem"
-                android:id="@+id/tvLastUpdatedDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{repoViewModel.lastUpdatedDate, default=placeholder}"/>
-        </TableRow>
-
-        <TableRow style="@style/RepoDetailLayoutPadding">
-            <TextView
-                style="@style/RepoDetailItemLabel"
-                android:id="@+id/tvLinkLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/link_label" />
-
-
-            <TextView
-                style="@style/RepoDetailItem"
-                android:id="@+id/tvLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{repoViewModel.repoLink, default=placeholder}"/>
-        </TableRow>
-
-        <TableRow style="@style/RepoDetailLayoutPadding">
-
-            <TextView
-                style="@style/RepoDetailItemLabel"
-                android:id="@+id/tvLicenseLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/license_label" />
-
-        </TableRow>
-
-    </TableLayout>
-
-        <TableLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp">
+            android:orientation="vertical">
+
+            <TableLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <TableRow style="@style/RepoDetailLayoutPadding">
                 <TextView
-                    style="@style/RepoDetailLicenceItemLabel"
-                    android:id="@+id/tvKeyLabel"
+                    style="@style/RepoDetailItemLabel"
+                    android:id="@+id/tvRepoNameLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/key_label"/>
+                    android:text="@string/repo_name_label" />
+
                 <TextView
                     style="@style/RepoDetailItem"
+                    android:id="@+id/tvRepoName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{repoViewModel.licence.key, default=placeholder}"/>
+                    android:text="@{repoViewModel.repoName, default=placeholder}"/>
+
             </TableRow>
 
             <TableRow style="@style/RepoDetailLayoutPadding">
                 <TextView
-                    style="@style/RepoDetailLicenceItemLabel"
-                    android:id="@+id/tvLicenceNameLabel"
+                    style="@style/RepoDetailItemLabel"
+                    android:id="@+id/tvDescriptionLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/license_name_label"/>
+                    android:text="@string/description_label"/>
+
+
                 <TextView
                     style="@style/RepoDetailItem"
+                    android:id="@+id/tvDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{repoViewModel.licence.name, default=placeholder}"/>
+                    android:text="@{repoViewModel.description, default=placeholder}"/>
             </TableRow>
 
             <TableRow style="@style/RepoDetailLayoutPadding">
                 <TextView
-                    style="@style/RepoDetailLicenceItemLabel"
-                    android:id="@+id/tvSPDXIdLabel"
+                    style="@style/RepoDetailItemLabel"
+                    android:id="@+id/tvCreatedDateLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/spdx_id_label"/>
+                    android:text="@string/created_label" />
+
                 <TextView
                     style="@style/RepoDetailItem"
+                    android:id="@+id/tvCreatedDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{repoViewModel.licence.spdxId, default=placeholder}"/>
+                    android:text="@{repoViewModel.createdDate, default=placeholder}"/>
             </TableRow>
 
             <TableRow style="@style/RepoDetailLayoutPadding">
                 <TextView
-                    style="@style/RepoDetailLicenceItemLabel"
-                    android:id="@+id/tvURLLabel"
+                    style="@style/RepoDetailItemLabel"
+                    android:id="@+id/tvLastUpdatedLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/url_label"/>
+                    android:text="@string/last_updated_label" />
+
                 <TextView
                     style="@style/RepoDetailItem"
+                    android:id="@+id/tvLastUpdatedDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{repoViewModel.licence.url, default=placeholder}"/>
+                    android:text="@{repoViewModel.lastUpdatedDate, default=placeholder}"/>
             </TableRow>
 
             <TableRow style="@style/RepoDetailLayoutPadding">
                 <TextView
-                    style="@style/RepoDetailLicenceItemLabel"
-                    android:id="@+id/tvNodeIdLabel"
+                    style="@style/RepoDetailItemLabel"
+                    android:id="@+id/tvLinkLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/node_id"/>
+                    android:text="@string/link_label" />
+
                 <TextView
                     style="@style/RepoDetailItem"
+                    android:id="@+id/tvLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{repoViewModel.licence.nodeId, default=placeholder}"/>
+                    android:text="@{repoViewModel.repoLink, default=placeholder}"/>
+
             </TableRow>
+
+            <TableRow style="@style/RepoDetailLayoutPadding">
+
+                <TextView
+                    style="@style/RepoDetailItemLabel"
+                    android:id="@+id/tvLicenseLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/license_label" />
+
+            </TableRow>
+
         </TableLayout>
 
-    </LinearLayout>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp">
+
+                <TableRow style="@style/RepoDetailLayoutPadding">
+                    <TextView
+                        style="@style/RepoDetailLicenceItemLabel"
+                        android:id="@+id/tvKeyLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/key_label"/>
+                    <TextView
+                        style="@style/RepoDetailItem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{repoViewModel.licence.key, default=placeholder}"/>
+
+                </TableRow>
+
+                <TableRow style="@style/RepoDetailLayoutPadding">
+                    <TextView
+                        style="@style/RepoDetailLicenceItemLabel"
+                        android:id="@+id/tvLicenceNameLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/license_name_label"/>
+                    <TextView
+                        style="@style/RepoDetailItem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{repoViewModel.licence.name, default=placeholder}"/>
+
+                </TableRow>
+
+                <TableRow style="@style/RepoDetailLayoutPadding">
+                    <TextView
+                        style="@style/RepoDetailLicenceItemLabel"
+                        android:id="@+id/tvSPDXIdLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/spdx_id_label"/>
+                    <TextView
+                        style="@style/RepoDetailItem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{repoViewModel.licence.spdxId, default=placeholder}"/>
+
+                </TableRow>
+
+                <TableRow style="@style/RepoDetailLayoutPadding">
+                    <TextView
+                        style="@style/RepoDetailLicenceItemLabel"
+                        android:id="@+id/tvURLLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/url_label"/>
+                    <TextView
+                        style="@style/RepoDetailItem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{repoViewModel.licence.url, default=placeholder}"/>
+
+                </TableRow>
+
+                <TableRow style="@style/RepoDetailLayoutPadding">
+                    <TextView
+                        style="@style/RepoDetailLicenceItemLabel"
+                        android:id="@+id/tvNodeIdLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/node_id"/>
+                    <TextView
+                        style="@style/RepoDetailItem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{repoViewModel.licence.nodeId, default=placeholder}"/>
+
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 </layout>

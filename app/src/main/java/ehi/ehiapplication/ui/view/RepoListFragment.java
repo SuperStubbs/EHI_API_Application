@@ -33,6 +33,8 @@ public class RepoListFragment extends Fragment {
     RecyclerView repo_recycler_view;
     @BindView(R.id.swipe_container)
     SwipeRefreshLayout swipe_container;
+    @BindView(R.id.tvError)
+    TextView tvError;
 
     RepoListViewModel repoListViewModel;
     ViewRepoListBinding binding;
@@ -52,7 +54,9 @@ public class RepoListFragment extends Fragment {
         final Observer<List<Repo>> repoListObserver = newRepoList -> {
             if(newRepoList != null) {
                 repoListViewModel.setIsLoading(false);
+                repoListViewModel.setHasError(false);
                 tvLoading.setVisibility(View.GONE);
+                tvError.setVisibility(View.GONE);
                 repo_recycler_view.setVisibility(View.VISIBLE);
                 repoAdapter.setData(repoListViewModel);
             }
@@ -64,8 +68,18 @@ public class RepoListFragment extends Fragment {
             }
         };
 
+        final Observer<Boolean> hasErrorObserver = hasError -> {
+            if(hasError != null && hasError) {
+                repoListViewModel.setIsLoading(false);
+                tvError.setVisibility(View.VISIBLE);
+                tvLoading.setVisibility(View.GONE);
+                repo_recycler_view.setVisibility(View.GONE);
+            }
+        };
+
         repoListViewModel.getRepoList().observe(this, repoListObserver);
         repoListViewModel.getIsLoading().observe(this, isLoadingObserver);
+        repoListViewModel.getHasError().observe(this, hasErrorObserver);
     }
 
     @Override
@@ -94,12 +108,8 @@ public class RepoListFragment extends Fragment {
 
         ButterKnife.bind(this, binding.getRoot());
 
-        swipe_container.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                repoListViewModel.fetchRepos();
-            }
-        });
+        swipe_container.setOnRefreshListener(() -> repoListViewModel.fetchRepos());
+        swipe_container.setColorSchemeColors(getResources().getColor(R.color.colorPrimary), getResources().getColor(R.color.colorPrimaryDark), getResources().getColor(R.color.colorAccent));
 
         return binding.getRoot();
     }
